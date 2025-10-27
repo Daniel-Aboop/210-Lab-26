@@ -26,17 +26,16 @@ int main() {
     vector<string> racer1;
     set<string> racer2;
     list<string> racer3;
-    //using these to hold my results from the races from vector->set->list and hold certain points of data
-    vector<int> reading;
-    vector<int> sorting;
-    vector<int> inserting;
-    vector<int> deleting;
+    //changed it to 3D array, layers rows columns, 4 slices for the races, 1 row of data for the 
+    int data[4][1][3];
+   
     string temp;
     int timevector=0;
     int timeset=0;
     int timelist=0;
 
-    for(int x=0;x<15;x++){
+
+          
         // Reading race
         auto start=high_resolution_clock::now();
         while(file>>temp){
@@ -45,7 +44,7 @@ int main() {
         auto end=high_resolution_clock::now();
         auto duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
-        reading.push_back(timevector);
+        
         file.clear();
         file.seekg(0);
 
@@ -56,7 +55,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
-        reading.push_back(timeset);
+        
         file.clear();
         file.seekg(0);
 
@@ -67,7 +66,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
-        reading.push_back(timelist);
+        
 
         //Sorting Race
         start=high_resolution_clock::now();
@@ -75,16 +74,16 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
-        sorting.push_back(timevector);
+       
 
         //set already sorts
-        sorting.push_back(-1);
+       
         start=high_resolution_clock::now();
         racer3.sort();
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
-        sorting.push_back(timelist);
+        
 
         //Inserting Race
         int place=racer1.size()/2;
@@ -93,15 +92,14 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
-        inserting.push_back(timevector);
+        
 
         start=high_resolution_clock::now();
         racer2.insert("TESTCODE");
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
-        inserting.push_back(timeset);
-        
+
         start=high_resolution_clock::now();
         auto iter=racer3.begin();
         advance(iter,racer3.size()/2);
@@ -109,7 +107,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
-        inserting.push_back(timelist);
+        
 
         //Deleting Race
         start=high_resolution_clock::now();
@@ -118,7 +116,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
-        deleting.push_back(timevector);
+        
 
         start=high_resolution_clock::now();
         auto it=racer2.begin();
@@ -127,7 +125,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
-        deleting.push_back(timeset);
+       
 
         start=high_resolution_clock::now();
         auto its=racer3.begin();
@@ -136,7 +134,7 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
-        deleting.push_back(timelist);
+        
 
         //Outputting the resulst of the races
         cout<<left<<setw(12)<<"Operation"<<right<<setw(10)<<"Vector"
@@ -146,14 +144,8 @@ int main() {
         printvector(inserting,"Insert");
         printvector(deleting,"Delete");
         cout<<endl;
-        racer1.clear();
-        racer2.clear();
-        racer3.clear();
-        reading.clear();
-        sorting.clear();
-        inserting.clear();
-        deleting.clear();
-    }
+      
+    
      
     file.close();
     return 0;
