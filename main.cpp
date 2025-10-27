@@ -38,7 +38,11 @@ int main() {
         filedata.push_back(temp);
     }
     file.close();
-    for(int x=0;x<15;x++){ 
+    for(int x=0;x<1;x++){ 
+        cout<<counter<<endl;
+        racer1.clear();
+        racer2.clear();
+        racer3.clear();
         //Reading race
         //Vector
         auto start=high_resolution_clock::now();
@@ -78,7 +82,6 @@ int main() {
         // Since I setup my 3d array the rows will always be 0 so i didnt put it in the output
         cout<<"Operation     Vector       List      Set"<<endl;
         
-        cout<<data[0][0][0]<<"  "<<data[0][0][1]<<"  "<<data[0][0][2];
       
     
      
