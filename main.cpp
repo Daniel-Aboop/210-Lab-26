@@ -33,8 +33,8 @@ int main() {
     int timevector=0;
     int timeset=0;
     int timelist=0;
-    int counter=1;
-    for(int simulation=0;simulation<3;simulation++){
+    int counter=0;
+    for(int simulation=0;simulation<15;simulation++){
         cout<<counter<<endl;
     // Reading race-------------------------------------------------
         vector<string> racer1;
@@ -145,8 +145,9 @@ int main() {
     }
     //Outputting the resulst of the races
     string races[4]={"Read","Sort","Insert","Delete"};
-     cout<<left<<setw(12)<<"Operation"<<right<<setw(10)<<"Vector"
-    <<right<<setw(10)<<"Set"<<right<<setw(10)<<"List"<<endl;
+    cout<<"Number of simulations: "<<counter<<endl;
+    cout<<left<<setw(12)<<"Operation"<<right<<setw(10)<<"Vector"
+    <<right<<setw(10)<<"List"<<right<<setw(10)<<"Set"<<endl;
     for(int x=0;x<4;x++){
         cout<<left<<setw(12)<<races[x];
         for(int y=0;y<3;y++){
