@@ -23,24 +23,55 @@ int main() {
     else{
         cout<<"opened file"<<endl;
     }
-    vector<string> racer1;
-    set<string> racer2;
-    list<string> racer3;
-    //using these to hold my results from the races from vector->set->list and hold certain points of data
-    vector<int> reading;
-    vector<int> sorting;
-    vector<int> inserting;
-    vector<int> deleting;
+    vector<string> filedata;
     string temp;
+     while(file>>temp){
+        filedata.push_back(temp);
+    }
+    file.close();
+    long long data[4][3][2];
     int timevector=0;
     int timeset=0;
     int timelist=0;
+    int counter=0;
+    for(int simulation=0;simulation<3;simulation++){
+        cout<<counter<<endl;
     // Reading race
- 
-
+        vector<string> racer1;
+        list<string> racer2;
+        set<string> racer3;
+    //Vector
+        auto start=high_resolution_clock::now();
+        for(const auto &code:filedata){
+            racer1.push_back(code);
+        }
+        auto end=high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(end - start);
+        data[0][0][0]=duration.count();
+        data[0][0][1]+= data[0][0][0];
+    //List
+        start=high_resolution_clock::now();
+        for(const auto &code:filedata){
+            racer2.push_back(code);
+        }
+        end=high_resolution_clock::now();
+        duration = duration_cast<microseconds>(end - start);
+        data[0][1][0]=duration.count();
+        data[0][1][1]+=data[0][1][0];
+    //Set
+        start=high_resolution_clock::now();
+        for(const auto &code:filedata){
+            racer3.insert(code);
+        }
+        end=high_resolution_clock::now();
+        duration = duration_cast<microseconds>(end - start);
+        data[0][2][0]=duration.count();
+        data[0][2][1]= data[0][2][0];
+        counter++;
+    }
     //Outputting the resulst of the races
 
-    file.close();
+    
     return 0;
 }
 /* syntax examples:
