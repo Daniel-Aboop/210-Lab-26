@@ -33,7 +33,7 @@ int main() {
     int timeset=0;
     int timelist=0;
     int counter;
-    for(int x=0;x<15;x++){
+    for(int x=0;x<15;x++){ 
         // Reading race
         //Vector
         auto start=high_resolution_clock::now();
@@ -66,20 +66,24 @@ int main() {
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
         data[0][0][2]+=timeset;
-        file.clear();
-        file.seekg(0);    
-        
+         
+   
         counter++;
     }
+
+   
+
         //Outputting the resulst of the races
         string races[4]={"Read","Sort","Insert","Delete"};
-        cout<<"Number of simulations: "<<counter;
+        cout<<"Number of simulations: "<<counter<<endl;
         // Since I setup my 3d array the rows will always be 0 so i didnt put it in the output
+        cout<<"Operation     Vector       List      Set"<<endl;
         for(int x=0;x<4;x++){
-            
+            cout<<left<<setw(10)<<races[x];
             for(int z=0;z<3;z++){
-
+                cout<<right<<setw(10)<<data[x][0][z]/counter;
             }
+            cout<<endl;
         }
       
     
