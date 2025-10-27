@@ -12,10 +12,9 @@
 #include <iomanip>
 using namespace std;
 using namespace std::chrono;
-void printvector(vector<int>& pass,string name);
 
 int main() {
-    ifstream file("C:\\Users\\hope4\\Desktop\\COMSC 210 Work\\210-Lab-26\\codes.txt");
+    ifstream file("file path here");
     if(!file.is_open()){
         cout<<"failed to open file"<<endl;
         return 1;
@@ -30,12 +29,16 @@ int main() {
     }
     file.close();
     // My numbers didnt match up to yours but I assumed it was a hardware difference.
-    // The reasoning for using long long int  was that int is 4 bytes and 
+    // the reason for using long long int was that if you wanted to run more simulations it would become a REALLy big number
     long long int data[4][3][2]={0};
     int timevector=0;
     int timeset=0;
     int timelist=0;
     int counter=0;
+    // I mostly copied and pasted code from Lab 25 but I switched the racer 2 and 3 since I got them mixed up 
+    // I also put it in the for loop so it can reset iteration easily and also
+    //changed reading a file every time to just reading from a vector with the file data
+    // I also changed it for better readability
     for(int simulation=0;simulation<15;simulation++){
         cout<<counter<<endl;
     // Reading race-------------------------------------------------
@@ -150,6 +153,9 @@ int main() {
     cout<<"Number of simulations: "<<counter<<endl;
     cout<<left<<setw(12)<<"Operation"<<right<<setw(10)<<"Vector"
     <<right<<setw(10)<<"List"<<right<<setw(10)<<"Set"<<endl;
+    //Here I print out the 3D array i view it in a x y z format 
+    // X being the slices Y being the rows and Z being the columns
+    // its like printing a 2D array but simple since we're always ont he second column
     for(int x=0;x<4;x++){
         cout<<left<<setw(12)<<races[x];
         for(int y=0;y<3;y++){
