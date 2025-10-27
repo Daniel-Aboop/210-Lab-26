@@ -27,7 +27,7 @@ int main() {
     list<string> racer2;
     set<string>racer3;
     vector<string> filedata;
-    int data[4][3][2];
+    long long data[4][3][2];
     string temp;
     int timevector=0;
     int timeset=0;
@@ -37,7 +37,7 @@ int main() {
         filedata.push_back(temp);
     }
     file.close();
-    for(int x=0;x<1;x++){ 
+    for(int x=0;x<3;x++){ 
         cout<<counter<<endl;
         vector<string> racer1;
         list<string> racer2;
@@ -52,7 +52,7 @@ int main() {
         auto duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
         data[0][0][0]=timevector;
-        data[0][0][1]+= data[0][0][0]
+        data[0][0][1]+= data[0][0][0];
         //List
         start=high_resolution_clock::now();
         for(const auto&code:filedata){
@@ -61,8 +61,8 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
-        data[0][0][1]+=timelist;
-        data[0][1][1]
+        data[0][1][0]=timelist;
+        data[0][1][1]+=data[0][1][0];
         //Set
         start=high_resolution_clock::now();
           for(const auto&code:filedata){
@@ -71,7 +71,8 @@ int main() {
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
-        data[0][0][2]+=timeset;
+        data[0][2][0]+=timeset;
+        data[0][2][1]+=data[0][2][0];
         counter++;
     }
 
@@ -82,7 +83,9 @@ int main() {
         cout<<"Number of simulations: "<<counter<<endl;
         // Since I setup my 3d array the rows will always be 0 so i didnt put it in the output
         cout<<"Operation     Vector       List      Set"<<endl;
-        cout<<data[0][0][0]/counter<<"    "<<data[0][0][1]/counter<<"   "<<data[0][0][2]/counter<<endl;
+        for(int x=0;x<3;x++){
+            cout<<data[0][x][1]/counter<<" ";
+        }
       
     
      
