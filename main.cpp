@@ -29,7 +29,7 @@ int main() {
         filedata.push_back(temp);
     }
     file.close();
-    long long data[4][3][2];
+    long long data[4][3][2]={0};
     int timevector=0;
     int timeset=0;
     int timelist=0;
@@ -67,8 +67,6 @@ int main() {
         duration = duration_cast<microseconds>(end - start);
         data[0][2][0]=duration.count();
         data[0][2][1]= data[0][2][0];
-        counter++;
-
     //Sorting Race--------------------------------------------
     //Vector
         start=high_resolution_clock::now();
@@ -134,17 +132,28 @@ int main() {
         data[3][1][1]+=data[3][1][0];
     //Set
         start=high_resolution_clock::now();
-        auto it=racer2.begin();
-        advance(it,racer2.size()/2);
-        racer2.erase(it);
+        auto it=racer3.begin();
+        advance(it,racer3.size()/2);
+        racer3.erase(it);
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         data[3][2][0]=duration.count();
         data[3][2][1]+=data[3][2][0];
+
+
         counter++;
     }
     //Outputting the resulst of the races
-
+    string races[4]={"Read","Sort","Insert","Delete"};
+     cout<<left<<setw(12)<<"Operation"<<right<<setw(10)<<"Vector"
+    <<right<<setw(10)<<"Set"<<right<<setw(10)<<"List"<<endl;
+    for(int x=0;x<4;x++){
+        cout<<left<<setw(12)<<races[x];
+        for(int y=0;y<3;y++){
+            cout<<right<<setw(10)<<data[x][y][1]/counter;
+        }
+        cout<<endl;
+    }
     
     return 0;
 }
