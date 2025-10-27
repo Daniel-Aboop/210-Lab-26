@@ -26,6 +26,7 @@ int main() {
     vector<string> racer1;
     list<string> racer2;
     set<string>racer3;
+    vector<string> filedata;
     //changed it to 3D array, layers rows columns, 4 slices for the races, 1 row of data for 
     int data[4][1][3];
     string temp;
@@ -33,41 +34,39 @@ int main() {
     int timeset=0;
     int timelist=0;
     int counter;
+    while(file>>temp){
+        filedata.push_back(temp);
+    }
+    file.close();
     for(int x=0;x<15;x++){ 
-        // Reading race
+        //Reading race
         //Vector
         auto start=high_resolution_clock::now();
-        while(file>>temp){
-            racer1.push_back(temp);
-        }
+       for(const auto&code:filedata){
+        racer1.push_back(code);
+       }
         auto end=high_resolution_clock::now();
         auto duration=duration_cast<microseconds>(end-start);
         timevector=duration.count();
         data[0][0][0]+=timevector;
-        file.clear();
-        file.seekg(0);
         //List
         start=high_resolution_clock::now();
-        while(file>>temp){
-            racer2.push_back(temp);
-        }
+        for(const auto&code:filedata){
+         racer2.push_back(code);
+       }
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timelist=duration.count();
         data[0][0][1]+=timelist;
-        file.clear();
-        file.seekg(0);
         //Set
         start=high_resolution_clock::now();
-        while(file>>temp){
-            racer3.insert(temp);
-        }
+          for(const auto&code:filedata){
+            racer3.insert(code);
+       }
         end=high_resolution_clock::now();
         duration=duration_cast<microseconds>(end-start);
         timeset=duration.count();
         data[0][0][2]+=timeset;
-         
-   
         counter++;
     }
 
@@ -78,17 +77,11 @@ int main() {
         cout<<"Number of simulations: "<<counter<<endl;
         // Since I setup my 3d array the rows will always be 0 so i didnt put it in the output
         cout<<"Operation     Vector       List      Set"<<endl;
-        for(int x=0;x<4;x++){
-            cout<<left<<setw(10)<<races[x];
-            for(int z=0;z<3;z++){
-                cout<<right<<setw(10)<<data[x][0][z]/counter;
-            }
-            cout<<endl;
-        }
+        
+        cout<<data[0][0][0]<<"  "<<data[0][0][1]<<"  "<<data[0][0][2];
       
     
      
-    file.close();
     return 0;
 }
 /* syntax examples:
