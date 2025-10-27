@@ -29,7 +29,9 @@ int main() {
         filedata.push_back(temp);
     }
     file.close();
-    long long data[4][3][2]={0};
+    // My numbers didnt match up to yours but I assumed it was a hardware difference.
+    // The reasoning for using long long int  was that int is 4 bytes and 
+    long long int data[4][3][2]={0};
     int timevector=0;
     int timeset=0;
     int timelist=0;
