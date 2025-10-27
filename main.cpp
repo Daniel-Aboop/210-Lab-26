@@ -68,6 +68,39 @@ int main() {
         data[0][2][0]=duration.count();
         data[0][2][1]= data[0][2][0];
         counter++;
+
+    //Sorting Race
+    //Vector
+      start=high_resolution_clock::now();
+      sort(racer1.begin(),racer1.end());
+      end=high_resolution_clock::now();
+      duration=duration_cast<microseconds>(end-start);
+      data[1][0][0]=duration.count();
+      data[1][0][1]= data[1][0][0];
+    //List
+      start=high_resolution_clock::now();
+      racer2.sort();
+      end=high_resolution_clock::now();
+      duration=duration_cast<microseconds>(end-start);
+      timelist=duration.count();
+      data[1][1][0]=duration.count();
+      data[1][2][1]+=data[1][1][0];
+    //Set
+      data[1][2][0]=-1;
+      data[1][2][1]+=data[1][2][0];
+
+    //Inserting Race
+    //Vector
+     int place=racer1.size()/2;
+     start=high_resolution_clock::now();
+     racer1.insert(racer1.begin()+place,"TESTCODE");
+     end=high_resolution_clock::now();
+     duration=duration_cast<microseconds>(end-start);
+     data[2][0][0]=duration.count();
+     data[2][0][1]+=data[2][0][0];
+    //Set
+        
+
     }
     //Outputting the resulst of the races
 
